@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  Ozone-exposure-and-health-data-analysis: Ozone-exposure-and-health-data-analysis.html
+last_built: 2023-12-29T06:33Z
+urls:
+  reference: https://changwoo-lee.github.io/bspme/reference
+  article: https://changwoo-lee.github.io/bspme/articles
+
