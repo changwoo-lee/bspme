@@ -68,8 +68,8 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>Go to package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a></p>
-<p>See a vignette with ozone exposure data: <a href="https://changwoo-lee.github.io/bspme/articles/Ozone-exposure-and-health-data-analysis.html">[link]</a></p>
+<p>Go to package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a> (NOTE: IT IS NOW UNPUBLISHED)</p>
+<p>See a vignette with ozone exposure data: <a href="https://changwoo-lee.github.io/bspme/articles/Ozone-exposure-and-health-data-analysis.html">[link]</a> (NOTE: SEE BELOW “INSTALLATION” SECTION INSTEAD)</p>
 <p><strong>bspme</strong> is an R package that provides a set of functions for <strong>B</strong>ayesian <strong>sp</strong>atially correlated <strong>m</strong>easurement <strong>e</strong>rror models, the Bayesian linear models with the presence of (spatially) correlated measurement error of covariate(s). For more details, please see the following paper:</p>
 <blockquote>
 <p>A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. Lee, C. J., Symanski, E., Rammah, A., Kang, D.H., Hopke, P., Park, E.S. (2023+). preprint (url here).</p>
@@ -88,7 +88,11 @@ $$</span></p>
 <p>You can install the development version of bspme with the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"changwoo-lee/bspme"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># never share below token</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"changwoo-lee/bspme"</span>, auth_token <span class="op">=</span> <span class="st">"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"</span>, build_vignettes <span class="op">=</span> <span class="cn">T</span>, force<span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p>To browse and see vignettes, run</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html" class="external-link">browseVignettes</a></span><span class="op">(</span><span class="st">"bspme"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="functionality">Functionality<a class="anchor" aria-label="anchor" href="#functionality"></a>
@@ -117,6 +121,10 @@ $$</span></p>
 </tr>
 </tbody>
 </table>
+<p>To see function description in R environment, run the following lines:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">blinreg_me</span></span>
+<span><span class="op">?</span><span class="va">vecchia_cov</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="datasets">datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
