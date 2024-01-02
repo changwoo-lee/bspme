@@ -14,7 +14,7 @@ where \(N(\mu, Q^{-1})\) is the sparse MVN that approximates original MVN \(N(\m
     
     <a class="navbar-brand me-2" href="../index.html">bspme</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,10 +103,10 @@ and optionally (4) KLdiv, the KL divergence KL(p, ptilde), where p is multivaria
 <span class="r-in"><span><span class="va">Sigma</span> <span class="op">=</span> <span class="fu">fields</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/exp.cov.html" class="external-link">Exp.cov</a></span><span class="op">(</span><span class="va">coords</span>, aRange <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit5</span> <span class="op">=</span> <span class="fu">vecchia_cov</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">coords</span>, n.neighbors <span class="op">=</span> <span class="fl">5</span>, KLdiv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit5</span><span class="op">$</span><span class="va">KLdiv</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1086.299</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1104.293</span>
 <span class="r-in"><span><span class="va">fit10</span> <span class="op">=</span> <span class="fu">vecchia_cov</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">coords</span>, n.neighbors <span class="op">=</span> <span class="fl">10</span>, KLdiv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit10</span><span class="op">$</span><span class="va">KLdiv</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 922.9651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 918.6869</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -115,7 +115,7 @@ and optionally (4) KLdiv, the KL divergence KL(p, ptilde), where p is multivaria
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Changwoo Lee, Elaine Symanski, Amal Rammah, Dong Hun Kang, Philip Hopke, Eun Sug Park.</p>
+  <p></p><p>Developed by Changwoo Lee, Eun Sug Park.</p>
 </div>
 
 <div class="pkgdown-footer-right">
