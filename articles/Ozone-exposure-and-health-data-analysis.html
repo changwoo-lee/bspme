@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">bspme</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -180,7 +180,7 @@ the original covariance matrix.</p>
 precision matrix.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fit the model</span></span>
-<span><span class="va">fit_me</span> <span class="op">=</span> <span class="fu"><a href="../reference/blinreg_me.html">blinreg_me</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Y</span>,</span>
+<span><span class="va">fit_me</span> <span class="op">=</span> <span class="fu">blinreg_me</span><span class="op">(</span>Y <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Y</span>,</span>
 <span>              X_mean <span class="op">=</span> <span class="va">X_mean</span>,</span>
 <span>              X_prec <span class="op">=</span> <span class="va">Q_sparse</span>, <span class="co"># sparse precision matrix</span></span>
 <span>              Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>
@@ -232,7 +232,7 @@ thousands. See the following example when <span class="math inline">\(n=3000\)</
 <span><span class="co"># I will only run 11 iteration for illustration purpose</span></span>
 <span><span class="va">Q_dense</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">X_cov</span><span class="op">)</span> <span class="co"># inverting 3000 x 3000 matrix, takes some time</span></span>
 <span><span class="co"># run</span></span>
-<span><span class="va">fit_me_dense</span> <span class="op">=</span> <span class="fu"><a href="../reference/blinreg_me.html">blinreg_me</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Y</span>,</span>
+<span><span class="va">fit_me_dense</span> <span class="op">=</span> <span class="fu">blinreg_me</span><span class="op">(</span>Y <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Y</span>,</span>
 <span>                X_mean <span class="op">=</span> <span class="va">X_mean</span>,</span>
 <span>                X_prec <span class="op">=</span> <span class="va">Q_dense</span>, <span class="co"># dense precision</span></span>
 <span>                Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>

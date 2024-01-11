@@ -19,10 +19,13 @@
     <loc>https://changwoo-lee.github.io/bspme/index.html</loc>
   </url>
   <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/blinreg_me.html</loc>
+    <loc>https://changwoo-lee.github.io/bspme/reference/NO2_Jan2012.html</loc>
   </url>
   <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/blogireg_me.html</loc>
+    <loc>https://changwoo-lee.github.io/bspme/reference/bglm_me.html</loc>
+  </url>
+  <url>
+    <loc>https://changwoo-lee.github.io/bspme/reference/blm_me.html</loc>
   </url>
   <url>
     <loc>https://changwoo-lee.github.io/bspme/reference/bspme-package.html</loc>
@@ -32,9 +35,6 @@
   </url>
   <url>
     <loc>https://changwoo-lee.github.io/bspme/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/ozone.html</loc>
   </url>
   <url>
     <loc>https://changwoo-lee.github.io/bspme/reference/vecchia_cov.html</loc>
