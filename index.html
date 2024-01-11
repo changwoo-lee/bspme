@@ -74,18 +74,11 @@
 <!-- badges: end -->
 <p>Go to package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a> (NOTE: IT IS NOW UNPUBLISHED)</p>
 <p>See a vignette with ozone exposure data: <a href="https://changwoo-lee.github.io/bspme/articles/Ozone-exposure-and-health-data-analysis.html">[link]</a> (NOTE: SEE BELOW “INSTALLATION” SECTION INSTEAD)</p>
-<p><strong>bspme</strong> is an R package that provides a set of functions for <strong>B</strong>ayesian <strong>sp</strong>atially correlated <strong>m</strong>easurement <strong>e</strong>rror models, the Bayesian linear models with the presence of (spatially) correlated measurement error of covariate(s). For more details, please see the following paper:</p>
+<p><strong>bspme</strong> is an R package that provides a set of functions for <strong>B</strong>ayesian <strong>sp</strong>atial exposure <strong>m</strong>easurement <strong>e</strong>rror models, the Bayesian linear and generalized linear models with the presence of spatially correlated measurement error of covariate(s). For more details, please see the following paper:</p>
 <blockquote>
-<p>A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. Lee, C. J., Symanski, E., Rammah, A., Kang, D.H., Hopke, P., Park, E.S. (2023+). preprint (url here).</p>
+<p>Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &amp; Park, E. S. (2024). A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. arXiv preprint arXiv:2401.00634. <a href="https://arxiv.org/abs/2401.00634" class="external-link uri">https://arxiv.org/abs/2401.00634</a></p>
 </blockquote>
-<p>For illustration, consider a normal linear regression model with intercept, one covariate <span class="math inline"><em>X</em></span> with measurement error, and one covariate <span class="math inline"><em>Z</em></span> without measurement error:</p>
-<p><span class="math display">$$
-Y_i = \beta_0 + \beta_x X_i + \beta_z Z_i + \epsilon_i, \quad \epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2_Y), \quad i=1,\dots,n,
-$$</span></p>
-<p>In the context of environmental epidemiology, the covariate <span class="math inline"><em>X</em><sub><em>i</em></sub></span> can be an exposure to air pollution of subject <span class="math inline"><em>i</em></span> at different locations, <span class="math inline"><em>Z</em><sub><em>i</em></sub></span> can be demographic information, and <span class="math inline"><em>Y</em><sub><em>i</em></sub></span> can be the associated health outcome. Since exposure <span class="math inline"><em>X</em><sub><em>i</em></sub></span>, <span class="math inline"><em>i</em> = 1, …, <em>n</em></span> are not directly measured at health subject locations but are predicted from air pollution monitoring station locations, this induces spatially correlated measurement error in <span class="math inline"><em>X</em><sub><em>i</em></sub></span>. Also, the uncertainty information should be taken account, which depends on the proximity of the monitoring station to the subject location. One way to incorporate this information is to use a multivariate normal (MVN) prior on a covariate <span class="math inline">(<em>X</em><sub>1</sub>,…,<em>X</em><sub><em>n</em></sub>)</span> for all subjects,</p>
-<p><span class="math display">(<em>X</em><sub>1</sub>,…,<em>X</em><sub><em>n</em></sub>) ∼ N<sub><em>n</em></sub>(<strong>m</strong>,<strong>Q</strong><sup>−1</sup>),</span></p>
-<p>with some mean <span class="math inline"><strong>m</strong></span> and precision (inverse covariance) matrix <span class="math inline"><strong>Q</strong></span>, referred as a MVN prior approach.</p>
-<p>The <strong>bspme</strong> package provides fast, scalable inference tools for Bayesian spatially correlated measurement error models, where measurement error information is represented as an MVN prior distribution with a <strong>sparse precision matrix</strong> <span class="math inline"><strong>Q</strong></span>. Naive choices of <span class="math inline"><strong>Q</strong></span>, such as a sample precision matrix, make the MCMC posterior inference algorithm infeasible to run for a large number of subjects <span class="math inline"><em>n</em></span> because of the <span class="math inline"><em>O</em>(<em>n</em><sup>3</sup>)</span> computational cost associated with the <span class="math inline"><em>n</em></span>-dimensional MVN prior. With the sparse precision matrix <span class="math inline"><strong>Q</strong></span> obtained from the Vecchia approximation, the <strong>bspme</strong> package offers a fast, scalable algorithm to conduct posterior inference for large health datasets, with the number of subjects <span class="math inline"><em>n</em></span> possibly reaching tens of thousands.</p>
+<p>The <strong>bspme</strong> package provides fast, scalable inference tools for Bayesian linear and generalized linear models with spatial exposure measurement error. These models typically arises from two-stage Bayesian analysis of environmental exposures and health outcomes, where predictions of covariate of interest (exposure) from a first-stage model and their uncertainty information are used in a second-stage regression model. The spatial exposure measurement error is represented as a multivariate normal prior distribution with a <strong>sparse precision matrix</strong> <span class="math inline"><strong>Q</strong></span>. Naive, non-sparse choices of <span class="math inline"><strong>Q</strong></span>, such as a sample precision matrix, make the MCMC posterior inference algorithm infeasible to run for a large number of subjects <span class="math inline"><em>n</em></span> because of the <span class="math inline"><em>O</em>(<em>n</em><sup>3</sup>)</span> computational cost associated with the <span class="math inline"><em>n</em></span>-dimensional MVN prior. With the sparse precision matrix <span class="math inline"><strong>Q</strong></span> obtained from the Vecchia approximation, the <strong>bspme</strong> package offers a fast, scalable algorithm to conduct posterior inference for large health datasets, with the number of subjects <span class="math inline"><em>n</em></span> possibly reaching tens of thousands.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -103,8 +96,8 @@ $$</span></p>
 </h2>
 <table class="table">
 <colgroup>
-<col width="17%">
-<col width="82%">
+<col width="18%">
+<col width="81%">
 </colgroup>
 <thead><tr class="header">
 <th>Function</th>
@@ -112,12 +105,12 @@ $$</span></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>blinreg_me()</code></td>
-<td>Bayesian normal linear regression models with a MVN prior for measurement errors</td>
+<td><code><a href="reference/blm_me.html">blm_me()</a></code></td>
+<td>Bayesian linear regression models with spatial exposure measurement error.</td>
 </tr>
 <tr class="even">
-<td><code>blogireg_me()</code></td>
-<td>Bayesian logistic regression models with a MVN prior for measurement errors</td>
+<td><code><a href="reference/bglm_me.html">bglm_me()</a></code></td>
+<td>Bayesian generalized linear models with spatial exposure measurement error.</td>
 </tr>
 <tr class="odd">
 <td><code><a href="reference/vecchia_cov.html">vecchia_cov()</a></code></td>
@@ -127,7 +120,7 @@ $$</span></p>
 </table>
 <p>To see function description in R environment, run the following lines:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">?</span><span class="va">blinreg_me</span></span>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">blm_me</span></span>
 <span><span class="op">?</span><span class="va">vecchia_cov</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -144,8 +137,8 @@ $$</span></p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>data("ozone")</code></td>
-<td>1987 midwest ozone exposure data</td>
+<td><code>data("NO2_Jan2012")</code></td>
+<td>January 2012 daily average NO2 exposure data at Houston, Texas</td>
 </tr>
 <tr class="even">
 <td><code>data("health_sim")</code></td>
@@ -157,7 +150,7 @@ $$</span></p>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>Please see the vignette “Ozone exposure and simulated health data”.</p>
+<p>Please see the vignette “NO2 exposure and simulated health data”.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
