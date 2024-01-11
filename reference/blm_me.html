@@ -131,7 +131,7 @@ Function <code>blm_me()</code> runs a Gibbs sampler to carry out posterior infer
     <p>Denote \(Y_i\) be a binary response, \(X_i\) be a \(q\times 1\) covariate that is subject to spatial exposure measurement error,
 and \(Z_i\) be a \(p\times 1\) covariate without measurement error.
 Consider normal linear regression model,
-$$Y_i = \beta_0 + X_i^\top \beta_x +  Z_i^\top \beta_z + \epsilon_i,\quad  \epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2_Y), \quad i=1,\dots,n,$$
+$$Y_i = \beta_0 + X_i^\top \beta_X +  Z_i^\top \beta_Z + \epsilon_i,\quad  \epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2_Y), \quad i=1,\dots,n,$$
 and spatial exposure measurement error of \(X_i\) for \(i=1,\dots,n\) is incorporated into the model as a multivariate normal prior.
 For example when \(q=1\), we have \(n-\)dimensional multivariate normal prior of \(X = (X_1,\dots,X_n)^\top\),
 $$(X_1,\dots,X_n)\sim N_n(\mu_X, Q_X^{-1}).$$
