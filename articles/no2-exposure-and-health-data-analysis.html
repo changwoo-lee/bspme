@@ -84,13 +84,13 @@ simulated health dataset.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://changwoo-lee.github.io/bspme/">bspme</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span> <span class="co"># for spatial distance calculation and covariance functions </span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="co"># plotting tool </span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span> <span class="co"># for spatial distance calculation and covariance functions</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="co"># plotting tool</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"NO2_Jan2012"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"health_sim"</span><span class="op">)</span></span></code></pre></div>
 <p>The daily average NO2 data are collected at 21 monitoring sites
-within and around the Houston, Texas during Jan 2012. We focus on NO2
-exposure on a specific date (Jan 10th, 2012) for an illustration
+within and around the Harris County, Texas during Jan 2012. We focus on
+NO2 exposure on a specific date (Jan 10th, 2012) for an illustration
 purpose. We also consider simulated health dataset, with <span class="math inline">\(n=2000\)</span> subject locations and continuous
 health responses.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -180,7 +180,7 @@ covariance matrix as closely as possible.</p>
 <span>            n.neighbors <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">Q_sparse</span> <span class="op">=</span> <span class="va">run_vecchia</span><span class="op">$</span><span class="va">Q</span></span>
 <span><span class="va">run_vecchia</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 0.478267 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 0.565794 secs</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-bspme-with-sparse-precision-matrix">Fit bspme with sparse precision matrix<a class="anchor" aria-label="anchor" href="#fit-bspme-with-sparse-precision-matrix"></a>
@@ -198,7 +198,7 @@ precision matrix.</p>
 <span>              nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># increase as needed</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 6.827609 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 6.752251 secs</span></span></code></pre></div>
 <p>It takes less than 10 seconds to (1) run Vecchia approximation and
 (2) run the MCMC algorithm with a total of 1100 iterations (on Macbook
 M1 max CPU with 64GB of memory).</p>
@@ -214,18 +214,18 @@ M1 max CPU with 64GB of memory).</p>
 <span><span class="co">#&gt;    plus standard error of the mean:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                Mean      SD Naive SE Time-series SE</span></span>
-<span><span class="co">#&gt; (Intercept)  0.7750 0.07129 0.002254       0.008845</span></span>
-<span><span class="co">#&gt; exposure.1  -1.9652 0.04525 0.001431       0.006501</span></span>
-<span><span class="co">#&gt; covariate.1  2.9556 0.04490 0.001420       0.004061</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.9356 0.13538 0.004281       0.027180</span></span>
+<span><span class="co">#&gt; (Intercept)  0.7543 0.07250 0.002293       0.009223</span></span>
+<span><span class="co">#&gt; exposure.1  -1.9574 0.04286 0.001355       0.006387</span></span>
+<span><span class="co">#&gt; covariate.1  2.9598 0.04196 0.001327       0.003442</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.9640 0.12533 0.003963       0.022167</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 2. Quantiles for each variable:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                2.5%     25%     50%     75%   97.5%</span></span>
-<span><span class="co">#&gt; (Intercept)  0.6452  0.7273  0.7726  0.8222  0.9165</span></span>
-<span><span class="co">#&gt; exposure.1  -2.0566 -1.9952 -1.9624 -1.9327 -1.8824</span></span>
-<span><span class="co">#&gt; covariate.1  2.8693  2.9245  2.9572  2.9850  3.0448</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.6677  0.8503  0.9310  1.0265  1.1975</span></span></code></pre></div>
+<span><span class="co">#&gt; (Intercept)  0.6204  0.7076  0.7507  0.7992  0.9067</span></span>
+<span><span class="co">#&gt; exposure.1  -2.0436 -1.9862 -1.9571 -1.9278 -1.8697</span></span>
+<span><span class="co">#&gt; covariate.1  2.8754  2.9311  2.9607  2.9885  3.0378</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.7355  0.8749  0.9632  1.0538  1.2001</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-bspme-without-sparse-precision-matrix-slow">Fit bspme without sparse precision matrix (slow)<a class="anchor" aria-label="anchor" href="#fit-bspme-without-sparse-precision-matrix-slow"></a>
@@ -243,14 +243,14 @@ thousands. See the following example when <span class="math inline">\(n=2000\)</
 <span>                X_prec <span class="op">=</span> <span class="va">Q_dense</span>, <span class="co"># dense precision</span></span>
 <span>                Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>
 <span>                nburn <span class="op">=</span> <span class="fl">1</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
-<span>                nsave <span class="op">=</span> <span class="fl">11</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
+<span>                nsave <span class="op">=</span> <span class="fl">10</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
 <span>                nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># I will only run 11 iteration for illustration purpose</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me_dense</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 18.57673 secs</span></span></code></pre></div>
-<p>Even with only 11 MCMC iterations, it takes about 18 seconds to run
+<span><span class="co">#&gt; Time difference of 16.67434 secs</span></span></code></pre></div>
+<p>Even with only 11 MCMC iterations, it takes about 15 seconds to run
 the MCMC algorithm. With the same number of iterations as before (1100),
-it will take about 1800 seconds (i.e. 30 minutes) to run the MCMC
+it will take about 1500 seconds (i.e. 25 minutes) to run the MCMC
 algorithm. This gap becomes much larger when the number of health
 subject locations grows, such as tens of thousands. Then, the naive
 algorithm using a dense precision matrix becomes infeasible, but we can
