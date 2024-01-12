@@ -78,14 +78,14 @@
     
     
 <p>This is a vignette for the <code>bspme</code> package based on
-January 2012 daily average NO2 data at Houston, Texas and simulated
-health dataset.</p>
+January 2012 daily average NO2 data in Harris County, Texas and a
+simulated health dataset.</p>
 <p>First load the package and data:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://changwoo-lee.github.io/bspme/">bspme</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dnychka/fieldsRPackage" class="external-link">fields</a></span><span class="op">)</span> <span class="co"># for spatial distance calculation and covariance functions </span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="co"># plotting tool </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"NO2_Jan2012"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"health_sim"</span><span class="op">)</span></span></code></pre></div>
 <p>The daily average NO2 data are collected at 21 monitoring sites
@@ -95,39 +95,39 @@ purpose. We also consider simulated health dataset, with <span class="math inlin
 health responses.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_jan10</span> <span class="op">=</span> <span class="va">NO2_Jan2012</span><span class="op">[</span><span class="va">NO2_Jan2012</span><span class="op">$</span><span class="va">date</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2012-01-10"</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/quilt.plot.html" class="external-link">quilt.plot</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">data_jan10</span><span class="op">$</span><span class="va">lon</span>, <span class="va">data_jan10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span>,</span>
-<span>            <span class="va">data_jan10</span><span class="op">$</span><span class="va">lnNO2</span>, main <span class="op">=</span> <span class="st">"NO2 exposures (in log) at 21 stations"</span>,</span>
-<span>            xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span><span class="op">)</span></span>
+<span>            <span class="va">data_jan10</span><span class="op">$</span><span class="va">lnNO2</span>, main <span class="op">=</span> <span class="st">"log(NO2) exposures at 21 monitoring stations"</span>,</span>
+<span>            xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span>, legend.lab <span class="op">=</span> <span class="st">"ln(NO2)"</span><span class="op">)</span></span>
 <span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html" class="external-link">map</a></span><span class="op">(</span><span class="st">"county"</span>, <span class="st">"Texas"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">health_sim</span><span class="op">$</span><span class="va">lon</span>, <span class="va">health_sim</span><span class="op">$</span><span class="va">lat</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, col <span class="op">=</span> <span class="st">"grey"</span>,</span>
 <span>     xlab <span class="op">=</span> <span class="st">"Longitude"</span>, ylab <span class="op">=</span> <span class="st">"Latitude"</span>, main <span class="op">=</span> <span class="st">"2000 simulated health subject locations"</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/pkg/fields/man/US.html" class="external-link">US</a></span><span class="op">(</span>add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html" class="external-link">map</a></span><span class="op">(</span><span class="st">"county"</span>, <span class="st">"Texas"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="figure/eda-1.png" alt="plot of chunk eda" width="100%"><p class="caption">
-plot of chunk eda
 </p>
 </div>
 <div class="section level3">
 <h3 id="obtain-posterior-predictive-distribution-at-health-subject-locations">Obtain posterior predictive distribution at health subject
 locations<a class="anchor" aria-label="anchor" href="#obtain-posterior-predictive-distribution-at-health-subject-locations"></a>
 </h3>
-<p>In this example, we will use Gaussian process to obtain a predictive
-distribution of <span class="math inline">\((X_1,\dots,X_n)\)</span>,
-the log(NO2) exposure at the health subject locations. The posterior
-predictive distribution is n-dimensional multivariate normal <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span>, which will be used as
-a prior in health model to incorporate measurement error information of
-ozone exposure. Specifically, we will use the exponential covariance
-kernel with fixed range 5 (in miles) and standard deviation 1 (in
-ppbv).</p>
+<p>In this example, we will use a Gaussian process to obtain a
+predictive distribution of <span class="math inline">\((X_1,\dots,X_n)\)</span> for the log(NO2) exposure
+at the health subject locations. The posterior predictive distribution
+(ppd) is an n-dimensional multivariate normal <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span>, which will be used as
+a prior to incorporate the prediction uncertainty and spatial
+correlation in NO2 exposures at health subject locations in the
+estimation of the health model. Speciﬁcally, we will use the exponential
+covariance kernel with a ﬁxed range of 8 (in km) and standard deviation
+1.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coords_monitor</span> <span class="op">=</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">data_jan10</span><span class="op">$</span><span class="va">lon</span>, <span class="va">data_jan10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span>
 <span><span class="va">coords_health</span> <span class="op">=</span> <span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">health_sim</span><span class="op">$</span><span class="va">lon</span>, <span class="va">health_sim</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span>
-<span><span class="va">a</span> <span class="op">=</span> <span class="fl">5</span>; <span class="va">sigma</span> <span class="op">=</span> <span class="fl">1</span>; <span class="co"># assume known</span></span>
+<span><span class="va">a</span> <span class="op">=</span> <span class="fl">8</span>; <span class="va">sigma</span> <span class="op">=</span> <span class="fl">1</span>; <span class="co"># assume known</span></span>
 <span><span class="co"># distance calculation</span></span>
-<span><span class="va">distmat_xx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_monitor</span><span class="op">)</span></span>
-<span><span class="va">distmat_xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_monitor</span>, <span class="va">coords_health</span><span class="op">)</span></span>
-<span><span class="va">distmat_yy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_health</span><span class="op">)</span></span>
+<span><span class="va">distmat_xx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_monitor</span>, miles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">distmat_xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_monitor</span>, <span class="va">coords_health</span>, miles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span><span class="va">distmat_yy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fields/man/rdist.earth.html" class="external-link">rdist.earth</a></span><span class="op">(</span><span class="va">coords_health</span>, miles <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># GP covariance matrices</span></span>
 <span><span class="va">Sigmaxx</span> <span class="op">=</span> <span class="fu">fields</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/Exponential.html" class="external-link">Matern</a></span><span class="op">(</span><span class="va">distmat_xx</span>, smoothness <span class="op">=</span> <span class="fl">0.5</span>, range <span class="op">=</span> <span class="va">a</span>, phi <span class="op">=</span> <span class="va">sigma</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
@@ -139,25 +139,26 @@ ppbv).</p>
 <span><span class="va">X_cov</span> <span class="op">&lt;-</span> <span class="va">Sigmayy</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Sigmaxy</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">Sigmaxx</span>,<span class="va">Sigmaxy</span><span class="op">)</span> <span class="co"># n_y by n_y</span></span>
 <span></span>
 <span><span class="co"># visualization of posterior predictive distribution. Black triangle is monitoring station locations.</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/quilt.plot.html" class="external-link">quilt.plot</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">health_sim</span><span class="op">$</span><span class="va">lon</span>, <span class="va">health_sim</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span>,</span>
-<span>          <span class="va">X_mean</span>, main <span class="op">=</span> <span class="st">"posterior predictive mean of exposure at health data locations"</span>,</span>
-<span>          xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span><span class="op">)</span></span>
+<span>          <span class="va">X_mean</span>, main <span class="op">=</span> <span class="st">"posterior predictive mean at health subject locations"</span>,</span>
+<span>          xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span>, legend.lab <span class="op">=</span> <span class="st">"ln(NO2)"</span><span class="op">)</span></span>
 <span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html" class="external-link">map</a></span><span class="op">(</span><span class="st">"county"</span>, <span class="st">"Texas"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co"># posterior predictive sd of exposure at health data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/quilt.plot.html" class="external-link">quilt.plot</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">health_sim</span><span class="op">$</span><span class="va">lon</span>, <span class="va">health_sim</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span>,</span>
-<span>          <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">X_cov</span><span class="op">)</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"posterior predictive sd of exposure at health data locations"</span>,</span>
-<span>          xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span><span class="op">)</span></span>
+<span>          <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">X_cov</span><span class="op">)</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"posterior predictive stdev at health subject locations"</span>,</span>
+<span>          xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span>, legend.lab <span class="op">=</span> <span class="st">"ln(NO2)"</span><span class="op">)</span></span>
 <span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html" class="external-link">map</a></span><span class="op">(</span><span class="st">"county"</span>, <span class="st">"Texas"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="figure/eda2-1.png" alt="plot of chunk eda2" width="100%"><p class="caption">
-plot of chunk eda2
 </p>
 </div>
 <p>The covariance of <span class="math inline">\((X_1,\dots,X_n)\)</span> contains all spatial
-dependency information up to a second order, but its inverse <span class="math inline">\(Q_X\)</span> become a dense matrix. When it comes
-to fitting the Bayesian linear model with measurement error, the naive
-implementation with n-dimensional multivariate normal prior <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span> takes cubic time
+dependency information up to a second order, but the precision matrix
+(inverse covariance matrix) <span class="math inline">\(Q_X\)</span>
+becomes a dense matrix. When it comes to fitting the Bayesian linear
+model with measurement error, the naive implementation with an
+n-dimensional multivariate normal prior <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span> takes cubic time
 complexity of posterior inference for each MCMC iteration, which becomes
 infeasible to run when <span class="math inline">\(n\)</span> is large
 such as tens of thousands.</p>
@@ -165,12 +166,12 @@ such as tens of thousands.</p>
 <div class="section level3">
 <h3 id="run-vecchia-approximation-to-get-sparse-precision-matrix">Run Vecchia approximation to get sparse precision matrix<a class="anchor" aria-label="anchor" href="#run-vecchia-approximation-to-get-sparse-precision-matrix"></a>
 </h3>
-<p>We propose to use Vecchia approximation to get a new multivariate
+<p>We propose to use a Vecchia approximation to get a new multivariate
 normal prior of <span class="math inline">\((X_1,\dots,X_n)\)</span>
-with sparse precision matrix, which is crucial for scalable
-implementation of health model with measurement error, but also at the
-same time it aims to best preserve the spatial dependency information in
-the original covariance matrix.</p>
+with a sparse precision matrix, which is crucial for the scalable
+implementation of health models with spatial exposure measurement error
+while preserving the spatial dependency information in the original
+covariance matrix as closely as possible.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Run the Vecchia approximation to get the sparse precision matrix.</span></span>
 <span></span>
@@ -179,12 +180,12 @@ the original covariance matrix.</p>
 <span>            n.neighbors <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">Q_sparse</span> <span class="op">=</span> <span class="va">run_vecchia</span><span class="op">$</span><span class="va">Q</span></span>
 <span><span class="va">run_vecchia</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 0.5999758 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 0.478267 secs</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-bspme-with-sparse-precision-matrix">Fit bspme with sparse precision matrix<a class="anchor" aria-label="anchor" href="#fit-bspme-with-sparse-precision-matrix"></a>
 </h3>
-<p>We can now fit the main function of bspme package with sparse
+<p>We can now fit the main function of the bspme package with a sparse
 precision matrix.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fit the model</span></span>
@@ -192,16 +193,17 @@ precision matrix.</p>
 <span>              X_mean <span class="op">=</span> <span class="va">X_mean</span>,</span>
 <span>              X_prec <span class="op">=</span> <span class="va">Q_sparse</span>, <span class="co"># sparse precision matrix</span></span>
 <span>              Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>
-<span>              nburn <span class="op">=</span> <span class="fl">100</span>,</span>
-<span>              nsave <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>              nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span>              nburn <span class="op">=</span> <span class="fl">100</span>, <span class="co"># increase as needed</span></span>
+<span>              nsave <span class="op">=</span> <span class="fl">1000</span>, <span class="co"># increase as needed</span></span>
+<span>              nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># increase as needed</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 7.23181 secs</span></span></code></pre></div>
-<p>It took less than 10 seconds to (1) run Vecchia approximation and (2)
-run the MCMC algorithm with total 1100 iterations.</p>
+<span><span class="co">#&gt; Time difference of 6.827609 secs</span></span></code></pre></div>
+<p>It takes less than 10 seconds to (1) run Vecchia approximation and
+(2) run the MCMC algorithm with a total of 1100 iterations (on Macbook
+M1 max CPU with 64GB of memory).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit_me</span><span class="op">$</span><span class="va">posterior</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit_me</span><span class="op">$</span><span class="va">posterior</span><span class="op">)</span> <span class="co"># posterior summary</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Iterations = 1:1000</span></span>
 <span><span class="co">#&gt; Thinning interval = 1 </span></span>
@@ -212,60 +214,56 @@ run the MCMC algorithm with total 1100 iterations.</p>
 <span><span class="co">#&gt;    plus standard error of the mean:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                Mean      SD Naive SE Time-series SE</span></span>
-<span><span class="co">#&gt; (Intercept)  0.7646 0.07789 0.002463       0.010519</span></span>
-<span><span class="co">#&gt; exposure.1  -1.9594 0.05087 0.001609       0.007164</span></span>
-<span><span class="co">#&gt; covariate.1  2.9536 0.03997 0.001264       0.003023</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.9759 0.15318 0.004844       0.033582</span></span>
+<span><span class="co">#&gt; (Intercept)  0.7750 0.07129 0.002254       0.008845</span></span>
+<span><span class="co">#&gt; exposure.1  -1.9652 0.04525 0.001431       0.006501</span></span>
+<span><span class="co">#&gt; covariate.1  2.9556 0.04490 0.001420       0.004061</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.9356 0.13538 0.004281       0.027180</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 2. Quantiles for each variable:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                2.5%     25%     50%     75%   97.5%</span></span>
-<span><span class="co">#&gt; (Intercept)  0.6082  0.7191  0.7665  0.8129  0.9187</span></span>
-<span><span class="co">#&gt; exposure.1  -2.0572 -1.9954 -1.9582 -1.9243 -1.8647</span></span>
-<span><span class="co">#&gt; covariate.1  2.8712  2.9281  2.9534  2.9815  3.0285</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.6451  0.8785  0.9800  1.0645  1.3046</span></span>
-<span><span class="fu">bayesplot</span><span class="fu">::</span><span class="fu">mcmc_trace</span><span class="op">(</span><span class="va">fit_me</span><span class="op">$</span><span class="va">posterior</span><span class="op">)</span></span></code></pre></div>
-<div class="figure">
-<img src="figure/unnamed-chunk-3-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-3</p>
-</div>
+<span><span class="co">#&gt; (Intercept)  0.6452  0.7273  0.7726  0.8222  0.9165</span></span>
+<span><span class="co">#&gt; exposure.1  -2.0566 -1.9952 -1.9624 -1.9327 -1.8824</span></span>
+<span><span class="co">#&gt; covariate.1  2.8693  2.9245  2.9572  2.9850  3.0448</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.6677  0.8503  0.9310  1.0265  1.1975</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="fit-bspme-without-sparse-precision-matrix">Fit bspme without sparse precision matrix<a class="anchor" aria-label="anchor" href="#fit-bspme-without-sparse-precision-matrix"></a>
+<h3 id="fit-bspme-without-sparse-precision-matrix-slow">Fit bspme without sparse precision matrix (slow)<a class="anchor" aria-label="anchor" href="#fit-bspme-without-sparse-precision-matrix-slow"></a>
 </h3>
-<p>As mentioned before, if precision matrix is dense, the posterior
+<p>As mentioned above, if the precision matrix is dense, the posterior
 computation becomes infeasible when <span class="math inline">\(n\)</span> becomes large, such as tens of
 thousands. See the following example when <span class="math inline">\(n=2000\)</span>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fit the model, without vecchia approximation</span></span>
 <span><span class="co"># I will only run 11 iteration for illustration purpose</span></span>
-<span><span class="va">Q_dense</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">X_cov</span><span class="op">)</span> <span class="co"># inverting 3000 x 3000 matrix, takes some time</span></span>
+<span><span class="va">Q_dense</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Matrix/man/solve-methods.html" class="external-link">solve</a></span><span class="op">(</span><span class="va">X_cov</span><span class="op">)</span> <span class="co"># inverting 2000 x 2000 matrix, takes some time</span></span>
 <span><span class="co"># run</span></span>
 <span><span class="va">fit_me_dense</span> <span class="op">=</span> <span class="fu"><a href="../reference/blm_me.html">blm_me</a></span><span class="op">(</span>Y <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Y</span>,</span>
 <span>                X_mean <span class="op">=</span> <span class="va">X_mean</span>,</span>
 <span>                X_prec <span class="op">=</span> <span class="va">Q_dense</span>, <span class="co"># dense precision</span></span>
 <span>                Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>
-<span>                nburn <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>                nsave <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>                nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<span>                nburn <span class="op">=</span> <span class="fl">1</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
+<span>                nsave <span class="op">=</span> <span class="fl">11</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
+<span>                nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># I will only run 11 iteration for illustration purpose</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me_dense</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 16.98819 secs</span></span></code></pre></div>
-<p>With even only 11 MCMC iterations, it took about 15 seconds to run
-the MCMC algorithm. With same number of iterations as before (1100), it
-will take about 1500 seconds, i.e. 25 minutes to run the MCMC algorithm.
-This gap becomes much larger when the number of health subject locations
-grows, such as tens of thousands. Then, the naive algorithm using dense
-precision matrix becomes infeasible, but we can carry out the inference
-using Vecchia approximation.</p>
-<p>The quality of Vecchia approximation depends on the size of the
+<span><span class="co">#&gt; Time difference of 18.57673 secs</span></span></code></pre></div>
+<p>Even with only 11 MCMC iterations, it takes about 18 seconds to run
+the MCMC algorithm. With the same number of iterations as before (1100),
+it will take about 1800 seconds (i.e. 30 minutes) to run the MCMC
+algorithm. This gap becomes much larger when the number of health
+subject locations grows, such as tens of thousands. Then, the naive
+algorithm using a dense precision matrix becomes infeasible, but we can
+carry out the inference using the Vecchia approximation.</p>
+<p>The quality of the Vecchia approximation depends on the size of the
 nearest neighbors, which is controlled by the argument
-<code>n.neighbors</code> in <code>vecchia_cov</code> function. The
-larger the <code>n.neighbors</code>, the better the approximation. In
-the simulaton study of Lee et al. (2024), Vecchia approximation with
-small <code>n.neighbors</code> can provide scalable inference method
-where the results (e.g. RMSE, empirical coverage) are close to the
-results that are based on dense precision matrix or fully Bayesian
-analysis.</p>
+<code>n.neighbors</code> in the <code>vecchia_cov</code> function. The
+larger the <code>n.neighbors</code>, the better the approximation. The
+simulation study of Lee et al. (2024), Vecchia approximation with a
+relatively small <code>n.neighbors</code> can provide a scalable
+two-stage Bayesian inference method of which results (e.g. RMSE,
+empirical coverage) are close to those based on the dense precision
+matrix or a fully Bayesian analysis.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
