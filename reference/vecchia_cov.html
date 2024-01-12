@@ -122,10 +122,10 @@ The algorithm is based on the pseudocode 2 of Finley et al. (2019).</p>
 <span class="r-in"><span><span class="va">Sigma</span> <span class="op">=</span> <span class="fu">fields</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/exp.cov.html" class="external-link">Exp.cov</a></span><span class="op">(</span><span class="va">coords</span>, aRange <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit5</span> <span class="op">=</span> <span class="fu">vecchia_cov</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">coords</span>, n.neighbors <span class="op">=</span> <span class="fl">5</span>, KLdiv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit5</span><span class="op">$</span><span class="va">KLdiv</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1109.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1104.442</span>
 <span class="r-in"><span><span class="va">fit10</span> <span class="op">=</span> <span class="fu">vecchia_cov</span><span class="op">(</span><span class="va">Sigma</span>, <span class="va">coords</span>, n.neighbors <span class="op">=</span> <span class="fl">10</span>, KLdiv <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fit10</span><span class="op">$</span><span class="va">KLdiv</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 918.4069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 925.627</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
