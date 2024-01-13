@@ -78,4 +78,4 @@ To see function description in R environment, run the following lines:
 
 ## Examples
 
-Please see the vignette "NO2 exposure and simulated health data".
+Please see the vignette "NO2-exposure-and-health-data-analysis".
