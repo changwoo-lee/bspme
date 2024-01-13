@@ -38,8 +38,9 @@ paper:
 > Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &
 > Park, E. S. (2024). A scalable two-stage Bayesian approach accounting
 > for exposure measurement error in environmental epidemiology. arXiv
-> preprint arXiv:2401.00634. <https://arxiv.org/abs/2401.00634> \##
-> Installation
+> preprint arXiv:2401.00634. <https://arxiv.org/abs/2401.00634>
+
+## Installation
 
 You can install the R package bspme with the following code:
 
