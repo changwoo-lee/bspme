@@ -9,7 +9,7 @@
 Go to the package website:
 [\[link\]](https://changwoo-lee.github.io/bspme/)
 
-See a vignette with NO2 exposure data:
+See a vignette with NO2 exposure and simulated health data:
 [\[link\]](https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html)
 
 See bspme_1.0.0.pdf for the pdf file of the package manual.
