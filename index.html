@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">bspme</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,7 @@
 <!-- badges: end -->
 <p>Go to the package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a></p>
 <p>See a vignette with NO2 exposure and simulated health data: <a href="https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html">[link]</a></p>
-<p>See bspme_1.0.0.pdf for the pdf file of the package manual.</p>
+<p>See bspme_1.0.1.pdf for the pdf file of the package manual.</p>
 <p><strong>bspme</strong> is an R package that provides fast, scalable inference tools for <strong>B</strong>ayesian <strong>sp</strong>atial exposure <strong>m</strong>easurement <strong>e</strong>rror models, namely, the Bayesian linear and generalized linear models with the presence of spatial exposure measurement error of covariate(s). These models typically arise from a two-stage Bayesian analysis of environmental exposures and health outcomes. From a first-stage model, predictions of the covariate of interest (“exposure”) and their uncertainty information (typically contained in MCMC samples) are obtained and used to form a multivariate normal prior distribution <span class="math inline"><em>X</em> ∼ <em>N</em>(<em>μ</em>,<em>Σ</em>)</span> for exposure in a second-stage regression model. Naive, non-sparse choices of the precision matrix <span class="math inline"><em>Q</em> = <em>Σ</em><sup>−1</sup></span> of the multivariate normal (such as a sample precision matrix) lead to the MCMC posterior inference algorithm being infeasible to run for a large number of subjects <span class="math inline"><em>n</em></span> because of the cubic computational cost associated with the <span class="math inline"><em>n</em></span>-dimensional MVN prior. With a sparse precision matrix <span class="math inline"><em>Q</em></span> obtained from the Vecchia approximation, the <strong>bspme</strong> package offers fast, scalable algorithms to conduct posterior inference for large health datasets, with the number of subjects <span class="math inline"><em>n</em></span> possibly reaching tens of thousands. For more details, please see the following paper:</p>
 <blockquote>
 <p>Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &amp; Park, E. S. (2024). A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. arXiv preprint arXiv:2401.00634. <a href="https://arxiv.org/abs/2401.00634" class="external-link uri">https://arxiv.org/abs/2401.00634</a> ## Installation</p>
