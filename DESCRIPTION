@@ -1,0 +1,28 @@
+Package: bspme
+Type: Package
+Title: Bayesian Spatial Measurement Error Models
+Version: 1.0.0
+Authors@R: c(person("Changwoo", "Lee", role=c("aut", "cre"), email="c.lee@stat.tamu.edu"), person("Eun Sug", "Park", role = c("aut")))
+Author: Changwoo Lee[aut, cre], Eun Sug Park[aut]
+Maintainer: Changwoo Lee <c.lee@stat.tamu.edu>
+Description: Scalable methods for fitting Bayesian linear and generalized linear models in the presence of spatial exposure measurement error. These models typically arise from a two-stage Bayesian analysis of environmental exposures and health outcomes. From a first-stage model, predictions of the covariate of interest (''exposure'') and their uncertainty information (typically contained in MCMC samples) are used to form a multivariate normal prior distribution for exposure in a second-stage regression model. This package also provides implementation of the methods used in Lee et al. (2024) <https://arxiv.org/abs/2401.00634>. 
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    BayesLogit,
+    coda,
+    fields,
+    spam,
+    spNNGP
+Depends: 
+    Matrix,
+    R (>= 2.10)
+URL: https://changwoo-lee.github.io/bspme/
+BugReports: https://github.com/changwoo-lee/bspme/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
