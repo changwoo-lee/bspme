@@ -41,8 +41,7 @@ paper:
 > preprint arXiv:2401.00634. <https://arxiv.org/abs/2401.00634> \##
 > Installation
 
-You can install the development version of bspme with the following
-code:
+You can install the R package bspme with the following code:
 
 ``` r
 # install.packages("devtools")
