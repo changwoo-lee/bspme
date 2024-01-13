@@ -68,18 +68,17 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>Go to the package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a> (NOTE: IT IS NOW UNPUBLISHED)</p>
-<p>See a vignette with NO2 exposure data: <a href="https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html">[link]</a> (NOTE: SEE BELOW “INSTALLATION” SECTION INSTEAD)</p>
+<p>Go to the package website: <a href="https://changwoo-lee.github.io/bspme/">[link]</a></p>
+<p>See a vignette with NO2 exposure data: <a href="https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html">[link]</a></p>
 <p>See bspme_1.0.0.pdf for the pdf file of the package manual.</p>
-<p><strong>bspme</strong> is an R package that provides fast, scalable inference tools for <strong>B</strong>ayesian <strong>sp</strong>atial exposure <strong>m</strong>easurement <strong>e</strong>rror models, the Bayesian linear and generalized linear models with the presence of spatially correlated measurement error of covariate(s). These models typically arise from a two-stage Bayesian analysis of environmental exposures and health outcomes. From a first-stage model, predictions of the covariate of interest (“exposure”) and their uncertainty information (typically contained in MCMC samples) are used to form a multivariate normal prior distribution <span class="math inline"><em>X</em> ∼ <em>N</em>(<em>μ</em>,<em>Σ</em>)</span> for exposure in a second-stage regression model. Naive, non-sparse choices of the precision matrix <span class="math inline"><em>Q</em> = <em>Σ</em><sup>−1</sup></span> of the multivariate normal (such as a sample precision matrix) leads to the MCMC posterior inference algorithm infeasible to run for a large number of subjects <span class="math inline"><em>n</em></span> because of the cubic computational cost associated with the <span class="math inline"><em>n</em></span>-dimensional MVN prior. With a sparse precision matrix <span class="math inline"><em>Q</em></span> obtained from the Vecchia approximation, the <strong>bspme</strong> package offers fast, scalable algorithms to conduct posterior inference with large health datasets, with the number of subjects <span class="math inline"><em>n</em></span> possibly reaching tens of thousands. For more details, please see the following paper:</p>
+<p><strong>bspme</strong> is an R package that provides fast, scalable inference tools for <strong>B</strong>ayesian <strong>sp</strong>atial exposure <strong>m</strong>easurement <strong>e</strong>rror models, namely, the Bayesian linear and generalized linear models with the presence of spatial exposure measurement error of covariate(s). These models typically arise from a two-stage Bayesian analysis of environmental exposures and health outcomes. From a first-stage model, predictions of the covariate of interest (“exposure”) and their uncertainty information (typically contained in MCMC samples) are obtained and used to form a multivariate normal prior distribution <span class="math inline"><em>X</em> ∼ <em>N</em>(<em>μ</em>,<em>Σ</em>)</span> for exposure in a second-stage regression model. Naive, non-sparse choices of the precision matrix <span class="math inline"><em>Q</em> = <em>Σ</em><sup>−1</sup></span> of the multivariate normal (such as a sample precision matrix) lead to the MCMC posterior inference algorithm being infeasible to run for a large number of subjects <span class="math inline"><em>n</em></span> because of the cubic computational cost associated with the <span class="math inline"><em>n</em></span>-dimensional MVN prior. With a sparse precision matrix <span class="math inline"><em>Q</em></span> obtained from the Vecchia approximation, the <strong>bspme</strong> package offers fast, scalable algorithms to conduct posterior inference for large health datasets, with the number of subjects <span class="math inline"><em>n</em></span> possibly reaching tens of thousands. For more details, please see the following paper:</p>
 <blockquote>
 <p>Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &amp; Park, E. S. (2024). A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. arXiv preprint arXiv:2401.00634. <a href="https://arxiv.org/abs/2401.00634" class="external-link uri">https://arxiv.org/abs/2401.00634</a> ## Installation</p>
 </blockquote>
 <p>You can install the development version of bspme with the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="co"># never share below token</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"changwoo-lee/bspme"</span>, auth_token <span class="op">=</span> <span class="st">"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"</span>, build_vignettes <span class="op">=</span> <span class="cn">T</span>, force<span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"changwoo-lee/bspme"</span>, build_vignettes <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <p>To browse and see vignettes, run</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html" class="external-link">browseVignettes</a></span><span class="op">(</span><span class="st">"bspme"</span><span class="op">)</span></span></code></pre></div>
@@ -121,8 +120,8 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="20%">
-<col width="79%">
+<col width="21%">
+<col width="78%">
 </colgroup>
 <thead><tr class="header">
 <th>Dataset call</th>
@@ -131,7 +130,7 @@
 <tbody>
 <tr class="odd">
 <td><code>data("NO2_Jan2012")</code></td>
-<td>Daily average NO2 concentrations in and around the Harris County, Texas, in Jan 2012.</td>
+<td>Daily average NO2 concentrations in and around Harris County, Texas, in Jan 2012.</td>
 </tr>
 <tr class="even">
 <td><code>data("health_sim")</code></td>
