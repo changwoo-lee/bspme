@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   no2-exposure-and-health-data-analysis: no2-exposure-and-health-data-analysis.html
-last_built: 2024-01-13T15:26Z
+last_built: 2024-01-13T15:33Z
 urls:
   reference: https://changwoo-lee.github.io/bspme/reference
   article: https://changwoo-lee.github.io/bspme/articles
