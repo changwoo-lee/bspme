@@ -20,7 +20,7 @@ NULL
 #'   \item{site_name}{monitoring station name}
 #'   \item{lon}{monitoring station longitude}
 #'   \item{lat}{monitoring station latitude}
-#'   \item{lnNO2}{natural logarithm of daily average NO2 concentrations, measured in parts per billion by volume (ppbv)}
+#'   \item{lnNO2}{natural logarithm of daily average NO2 concentrations measured in parts per billion by volume (ppbv)}
 #' }
 NULL
 

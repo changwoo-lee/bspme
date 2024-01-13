@@ -46,7 +46,7 @@ list of the following:
 \description{
 This function fits a Bayesian linear regression model in the presence of spatial exposure measurement error for covariate(s) \eqn{X}.
 One of the most important features of this function is that it allows a sparse matrix input for the prior precision matrix of \eqn{X} for scalable computation.
-Function \code{blm_me()} runs a Gibbs sampler to carry out posterior inference;  see the below "Details" section below for the model description, and Lee et al. (2024) for an application example in environmental epidemiology.
+Function \code{blm_me()} runs a Gibbs sampler to carry out posterior inference;  see the "Details" section below for the model description, and Lee et al. (2024) for an application example in environmental epidemiology.
 }
 \details{
 Let \eqn{Y_i} be a continuous response, \eqn{X_i} be a \eqn{q\times 1} covariate vector that is subject to spatial exposure measurement error,

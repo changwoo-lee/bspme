@@ -4,7 +4,7 @@
 #' One of the most important features of this function is that it allows a sparse matrix input for the prior precision matrix of \eqn{X} for scalable computation.
 #' As of version 1.0.0, only the Bayesian logistic regression model is supported among GLMs, and
 #' function \code{bglm_me()} runs a Gibbs sampler to carry out posterior inference using Polya-Gamma augmentation (Polson et al., 2013).
-#' See the below "Details" section below for the model description and Lee et al. (2024) for an application example in environmental epidemiology.
+#' See the "Details" section below for the model description and Lee et al. (2024) for an application example in environmental epidemiology.
 #'
 #' Let \eqn{Y_i} be a binary response, \eqn{X_i} be a \eqn{q\times 1} covariate vector that is subject to spatial exposure measurement error,
 #' and \eqn{Z_i} be a \eqn{p\times 1} covariate vector without measurement error.
