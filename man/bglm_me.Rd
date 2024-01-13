@@ -43,7 +43,7 @@ List of the following:
 \describe{
 \item{posterior}{\code{nsave} by (q+p) matrix of posterior samples of \eqn{\beta_x} and \eqn{\beta_z} as a coda::\link[coda]{mcmc} object.}
 \item{time}{time taken for running MCMC (in seconds)}
-\item{X_save}{ (if \code{saveX = TRUE}) Posterior samples of X}
+\item{X_save}{ (if \code{saveX = TRUE}) posterior samples of X}
 }
 }
 \description{

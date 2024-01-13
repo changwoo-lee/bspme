@@ -1,7 +1,7 @@
 Package: bspme
 Type: Package
 Title: Bayesian Spatial Measurement Error Models
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person("Changwoo", "Lee", role=c("aut", "cre"), email="c.lee@stat.tamu.edu"), person("Eun Sug", "Park", role = c("aut")))
 Author: Changwoo Lee[aut, cre], Eun Sug Park[aut]
 Maintainer: Changwoo Lee <c.lee@stat.tamu.edu>

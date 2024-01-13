@@ -12,7 +12,7 @@ Go to the package website:
 See a vignette with NO2 exposure and simulated health data:
 [\[link\]](https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html)
 
-See bspme_1.0.0.pdf for the pdf file of the package manual.
+See bspme_1.0.1.pdf for the pdf file of the package manual.
 
 **bspme** is an R package that provides fast, scalable inference tools
 for **B**ayesian **sp**atial exposure **m**easurement **e**rror models,

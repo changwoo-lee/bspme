@@ -25,7 +25,7 @@ blm_me(
 
 \item{Z}{\emph{matrix<num>}, n by p matrix containing p covariates that are not subject to measurement error.}
 
-\item{nburn}{\emph{integer}, number of burn-in iterationS (default=5000).}
+\item{nburn}{\emph{integer}, number of burn-in iterations (default=5000).}
 
 \item{nsave}{\emph{integer}, number of posterior samples (default=5000). Total number of MCMC iteration is \code{nburn + nsave * nthin}.}
 
@@ -40,7 +40,7 @@ list of the following:
 \describe{
 \item{posterior}{\code{nsave} by (q + p + 1) matrix of posterior samples of \eqn{\beta_X}, \eqn{\beta_Z}, \eqn{\sigma_Y^2} as a coda::\link[coda]{mcmc} object.}
 \item{time}{time taken for running MCMC (in seconds)}
-\item{X_save}{ (if \code{saveX = TRUE}) Posterior samples of X}
+\item{X_save}{ (if \code{saveX = TRUE}) posterior samples of X}
 }
 }
 \description{
