@@ -88,16 +88,16 @@ simulated health dataset.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">maps</span><span class="op">)</span> <span class="co"># plotting tool</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"NO2_Jan2012"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"health_sim"</span><span class="op">)</span></span></code></pre></div>
-<p>The daily average NO2 data are collected at 21 monitoring sites
-within and around the Harris County, Texas during Jan 2012. We focus on
-NO2 exposure on a specific date (Jan 10th, 2012) for an illustration
-purpose. We also consider simulated health dataset, with <span class="math inline">\(n=2000\)</span> subject locations and continuous
-health responses.</p>
+<p>The daily average NO2 data are collected from 21 monitoring sites in
+and around the Harris County, Texas during Jan 2012. We focus on NO2
+exposure on a specific date (Jan 10th, 2012) for an illustration
+purpose. We also consider a simulated health dataset with <span class="math inline">\(n=2000\)</span> subject locations and continuous
+health outcomes.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_jan10</span> <span class="op">=</span> <span class="va">NO2_Jan2012</span><span class="op">[</span><span class="va">NO2_Jan2012</span><span class="op">$</span><span class="va">date</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2012-01-10"</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/fields/man/quilt.plot.html" class="external-link">quilt.plot</a></span><span class="op">(</span><span class="fu"><a href="https://www.math.uzh.ch/pages/spam/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">data_jan10</span><span class="op">$</span><span class="va">lon</span>, <span class="va">data_jan10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span>,</span>
-<span>            <span class="va">data_jan10</span><span class="op">$</span><span class="va">lnNO2</span>, main <span class="op">=</span> <span class="st">"log(NO2) exposures at 21 monitoring stations"</span>,</span>
+<span>            <span class="va">data_jan10</span><span class="op">$</span><span class="va">lnNO2</span>, main <span class="op">=</span> <span class="st">"ln(NO2) exposures at 21 monitoring stations"</span>,</span>
 <span>            xlab <span class="op">=</span> <span class="st">"longitude"</span>, ylab<span class="op">=</span> <span class="st">"latitude"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">96.5</span>, <span class="op">-</span><span class="fl">94.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">30.5</span><span class="op">)</span>, legend.lab <span class="op">=</span> <span class="st">"ln(NO2)"</span><span class="op">)</span></span>
 <span><span class="fu">maps</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/maps/man/map.html" class="external-link">map</a></span><span class="op">(</span><span class="st">"county"</span>, <span class="st">"Texas"</span>, add <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">health_sim</span><span class="op">$</span><span class="va">lon</span>, <span class="va">health_sim</span><span class="op">$</span><span class="va">lat</span>, pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, col <span class="op">=</span> <span class="st">"grey"</span>,</span>
@@ -112,9 +112,9 @@ health responses.</p>
 locations<a class="anchor" aria-label="anchor" href="#obtain-posterior-predictive-distribution-at-health-subject-locations"></a>
 </h3>
 <p>In this example, we will use a Gaussian process to obtain a
-predictive distribution of <span class="math inline">\((X_1,\dots,X_n)\)</span> for the log(NO2) exposure
-at the health subject locations. The posterior predictive distribution
-(ppd) is an n-dimensional multivariate normal <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span>, which will be used as
+predictive distribution of <span class="math inline">\((X_1,\dots,X_n)\)</span> for the ln(NO2) exposure
+at health subject locations. The posterior predictive distribution (ppd)
+is an n-dimensional multivariate normal <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span>, which will be used as
 a prior to incorporate the prediction uncertainty and spatial
 correlation in NO2 exposures at health subject locations in the
 estimation of the health model. Speciﬁcally, we will use the exponential
@@ -155,9 +155,9 @@ covariance kernel with a ﬁxed range of 8 (in km) and standard deviation
 </div>
 <p>The covariance of <span class="math inline">\((X_1,\dots,X_n)\)</span> contains all spatial
 dependency information up to a second order, but the precision matrix
-(inverse covariance matrix) <span class="math inline">\(Q_X\)</span>
-becomes a dense matrix. When it comes to fitting the Bayesian linear
-model with measurement error, the naive implementation with an
+(inverse covariance matrix) <span class="math inline">\(Q_X\)</span> is
+a dense matrix. When it comes to fitting the Bayesian linear model with
+spatial exposure measurement error, the naive implementation with an
 n-dimensional multivariate normal prior <span class="math inline">\(N(\mu_X, Q_X^{-1})\)</span> takes cubic time
 complexity of posterior inference for each MCMC iteration, which becomes
 infeasible to run when <span class="math inline">\(n\)</span> is large
@@ -180,7 +180,7 @@ covariance matrix as closely as possible.</p>
 <span>            n.neighbors <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">Q_sparse</span> <span class="op">=</span> <span class="va">run_vecchia</span><span class="op">$</span><span class="va">Q</span></span>
 <span><span class="va">run_vecchia</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 0.565794 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 0.5541399 secs</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-bspme-with-sparse-precision-matrix">Fit bspme with sparse precision matrix<a class="anchor" aria-label="anchor" href="#fit-bspme-with-sparse-precision-matrix"></a>
@@ -198,10 +198,10 @@ precision matrix.</p>
 <span>              nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># increase as needed</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 6.752251 secs</span></span></code></pre></div>
-<p>It takes less than 10 seconds to (1) run Vecchia approximation and
-(2) run the MCMC algorithm with a total of 1100 iterations (on Macbook
-M1 max CPU with 64GB of memory).</p>
+<span><span class="co">#&gt; Time difference of 6.949046 secs</span></span></code></pre></div>
+<p>It takes less than 10 seconds to (1) run the Vecchia approximation
+and (2) run the MCMC algorithm with a total of 1100 iterations (on a
+Macbook M1 max CPU with 64GB of memory).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit_me</span><span class="op">$</span><span class="va">posterior</span><span class="op">)</span> <span class="co"># posterior summary</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -214,25 +214,25 @@ M1 max CPU with 64GB of memory).</p>
 <span><span class="co">#&gt;    plus standard error of the mean:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                Mean      SD Naive SE Time-series SE</span></span>
-<span><span class="co">#&gt; (Intercept)  0.7543 0.07250 0.002293       0.009223</span></span>
-<span><span class="co">#&gt; exposure.1  -1.9574 0.04286 0.001355       0.006387</span></span>
-<span><span class="co">#&gt; covariate.1  2.9598 0.04196 0.001327       0.003442</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.9640 0.12533 0.003963       0.022167</span></span>
+<span><span class="co">#&gt; (Intercept)  0.7490 0.08557 0.002706       0.012488</span></span>
+<span><span class="co">#&gt; exposure.1  -1.9544 0.05068 0.001603       0.007311</span></span>
+<span><span class="co">#&gt; covariate.1  2.9578 0.04151 0.001313       0.003219</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.9546 0.14537 0.004597       0.029898</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; 2. Quantiles for each variable:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                2.5%     25%     50%     75%   97.5%</span></span>
-<span><span class="co">#&gt; (Intercept)  0.6204  0.7076  0.7507  0.7992  0.9067</span></span>
-<span><span class="co">#&gt; exposure.1  -2.0436 -1.9862 -1.9571 -1.9278 -1.8697</span></span>
-<span><span class="co">#&gt; covariate.1  2.8754  2.9311  2.9607  2.9885  3.0378</span></span>
-<span><span class="co">#&gt; sigma2_Y     0.7355  0.8749  0.9632  1.0538  1.2001</span></span></code></pre></div>
+<span><span class="co">#&gt; (Intercept)  0.5882  0.6911  0.7466  0.8024  0.9289</span></span>
+<span><span class="co">#&gt; exposure.1  -2.0437 -1.9883 -1.9556 -1.9218 -1.8421</span></span>
+<span><span class="co">#&gt; covariate.1  2.8702  2.9305  2.9584  2.9863  3.0382</span></span>
+<span><span class="co">#&gt; sigma2_Y     0.6677  0.8498  0.9593  1.0553  1.2473</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="fit-bspme-without-sparse-precision-matrix-slow">Fit bspme without sparse precision matrix (slow)<a class="anchor" aria-label="anchor" href="#fit-bspme-without-sparse-precision-matrix-slow"></a>
 </h3>
 <p>As mentioned above, if the precision matrix is dense, the posterior
-computation becomes infeasible when <span class="math inline">\(n\)</span> becomes large, such as tens of
-thousands. See the following example when <span class="math inline">\(n=2000\)</span>.</p>
+computation becomes infeasible when <span class="math inline">\(n\)</span> is large, such as tens of thousands.
+See the following example when <span class="math inline">\(n=2000\)</span>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># fit the model, without vecchia approximation</span></span>
 <span><span class="co"># I will only run 11 iteration for illustration purpose</span></span>
@@ -242,28 +242,28 @@ thousands. See the following example when <span class="math inline">\(n=2000\)</
 <span>                X_mean <span class="op">=</span> <span class="va">X_mean</span>,</span>
 <span>                X_prec <span class="op">=</span> <span class="va">Q_dense</span>, <span class="co"># dense precision</span></span>
 <span>                Z <span class="op">=</span> <span class="va">health_sim</span><span class="op">$</span><span class="va">Z</span>,</span>
-<span>                nburn <span class="op">=</span> <span class="fl">1</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
-<span>                nsave <span class="op">=</span> <span class="fl">10</span>, <span class="co"># I will only run 11 iteration for illustration purpose</span></span>
-<span>                nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># I will only run 11 iteration for illustration purpose</span></span></code></pre></div>
+<span>                nburn <span class="op">=</span> <span class="fl">1</span>, <span class="co"># Running only 11 iterations for an illustration purpose</span></span>
+<span>                nsave <span class="op">=</span> <span class="fl">10</span>, <span class="co"># Running only 11 iterations for an illustration purpose</span></span>
+<span>                nthin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># Running only 11 iterations for an illustration purpose</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_me_dense</span><span class="op">$</span><span class="va">cputime</span></span>
-<span><span class="co">#&gt; Time difference of 16.67434 secs</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 16.86512 secs</span></span></code></pre></div>
 <p>Even with only 11 MCMC iterations, it takes about 15 seconds to run
 the MCMC algorithm. With the same number of iterations as before (1100),
 it will take about 1500 seconds (i.e. 25 minutes) to run the MCMC
 algorithm. This gap becomes much larger when the number of health
 subject locations grows, such as tens of thousands. Then, the naive
-algorithm using a dense precision matrix becomes infeasible, but we can
-carry out the inference using the Vecchia approximation.</p>
+algorithm which uses a dense precision matrix becomes infeasible, but we
+can carry out the inference using the Vecchia approximation.</p>
 <p>The quality of the Vecchia approximation depends on the size of the
 nearest neighbors, which is controlled by the argument
 <code>n.neighbors</code> in the <code>vecchia_cov</code> function. The
 larger the <code>n.neighbors</code>, the better the approximation. The
-simulation study of Lee et al. (2024), Vecchia approximation with a
-relatively small <code>n.neighbors</code> can provide a scalable
-two-stage Bayesian inference method of which results (e.g. RMSE,
-empirical coverage) are close to those based on the dense precision
-matrix or a fully Bayesian analysis.</p>
+simulation study of Lee et al. (2024) demonstrates that a Vecchia
+approximation with a relatively small <code>n.neighbors</code> can
+provide a scalable two-stage Bayesian inference method of which results
+(e.g. RMSE, empirical coverage) are close to those based on the dense
+precision matrix or a fully Bayesian analysis.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
