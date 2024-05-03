@@ -85,5 +85,5 @@ Please see the vignette “NO2-exposure-and-health-data-analysis”.
 ## Acknowldegements
 
 This work was supported by the National Institute of Environmental
-Health Sciences (NIEHS) of the National Institute of Health (NIH) under
+Health Sciences (NIEHS) of the National Institutes of Health (NIH) under
 R01ES031990.
