@@ -80,3 +80,11 @@ To see function description in R environment, run the following lines:
 ## Examples
 
 Please see the vignette "NO2-exposure-and-health-data-analysis".
+
+
+## Acknowldegements
+
+This work was supported by the National Institute of Environmental Health Sciences (NIEHS) of the National Institute of Health (NIH) under R01ES031990.
+
+
+
