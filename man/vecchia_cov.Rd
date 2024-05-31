@@ -4,7 +4,14 @@
 \alias{vecchia_cov}
 \title{Run Vecchia approximation given a covariance matrix}
 \usage{
-vecchia_cov(Sigma, coords, n.neighbors, ord = NULL, KLdiv = FALSE)
+vecchia_cov(
+  Sigma,
+  coords,
+  n.neighbors,
+  ord = NULL,
+  KLdiv = FALSE,
+  lonlat = FALSE
+)
 }
 \arguments{
 \item{Sigma}{\emph{matrix<num>}, n by n covariance matrix}
@@ -16,6 +23,8 @@ vecchia_cov(Sigma, coords, n.neighbors, ord = NULL, KLdiv = FALSE)
 \item{ord}{\emph{vector<int>}, length n vector, ordering of data. If NULL, ordering based on the first coordinate will be used.}
 
 \item{KLdiv}{\emph{logical}, If TRUE, return KL divergence \eqn{D_{KL}(p || \tilde{p})} where \eqn{p} is multivariate normal with original covariance matrix and \eqn{\tilde{p}} is the approximated multivariate normal with sparse precision matrix.}
+
+\item{lonlat}{\emph{logical}, (default FALSE) If TRUE, the coordinates are in longitude and latitude. If FALSE, the coordinates are in Euclidean space.}
 }
 \value{
 list of the following:
@@ -24,6 +33,7 @@ list of the following:
 \item{ord}{ordering used for Vecchia approximation}
 \item{cputime}{time taken to run Vecchia approximation}
 \item{KLdiv}{ (if \code{KLdiv = TRUE}) KL divergence \eqn{D_{KL}(p || \tilde{p})} where \eqn{p} is the multivariate normal with original covariance matrix and \eqn{\tilde{p}} is the approximated multivariate normal with a sparse precision matrix.}
+\item{Linv}{ n by n sparse reverse Cholesky factor of Q, a lower triangular matrix such that Q = t(Linv)\%*\%Linv (before ordering changes). In other words, Linv = chol(Q\link{n:1,n:1})\link{n:1,n:1} (before ordering changes).}
 }
 }
 \description{
@@ -31,16 +41,26 @@ Given a multivariate normal (MVN) distribution with covariance matrix \eqn{\Sigm
 this function finds a sparse precision matrix (inverse covariance) \eqn{Q} based on the Vecchia approximation (Vecchia 1988, Katzfuss and Guinness 2021),
 where \eqn{N(\mu, Q^{-1})} is the sparse MVN that approximates the original MVN \eqn{N(\mu, \Sigma)}.
 The algorithm is based on the pseudocode 2 of Finley et al. (2019).
+Nearest neighbor finding algorithm is based on GpGp::find_ordered_nn.
 }
 \examples{
 
+library(bspme)
 n = 1000
 coords = cbind(runif(n), runif(n))
+library(GpGp)
+ord <- GpGp::order_maxmin(coords) # from GpGp
 Sigma = fields::Exp.cov(coords, aRange = 1)
-fit5 = vecchia_cov(Sigma, coords, n.neighbors = 5, KLdiv = TRUE)
+fit5 = vecchia_cov(Sigma, coords, n.neighbors = 5, ord = ord, KLdiv = TRUE)
 fit5$KLdiv
-fit10 = vecchia_cov(Sigma, coords, n.neighbors = 10, KLdiv = TRUE)
+fit10 = vecchia_cov(Sigma, coords, n.neighbors = 10, ord = ord, KLdiv = TRUE)
 fit10$KLdiv
+
+# Check Linv
+Q = fit5$Q
+Q_reordered = Q[ord,ord]
+all.equal(fit5$Linv, chol(Q_reordered[n:1,n:1])[n:1,n:1])
+all.equal(Q_reordered, t(fit5$Linv) \%*\% fit5$Linv)
 
 }
 \references{
@@ -49,6 +69,4 @@ Vecchia, A. V. (1988). Estimation and model identification for continuous spatia
 Katzfuss, M., & Guinness, J. (2021). A General Framework for Vecchia Approximations of Gaussian Processes. Statistical Science, 36(1).
 
 Finley, A. O., Datta, A., Cook, B. D., Morton, D. C., Andersen, H. E., & Banerjee, S. (2019). Efficient algorithms for Bayesian nearest neighbor Gaussian processes. Journal of Computational and Graphical Statistics, 28(2), 401-414.
-
-Zhang, L., (2020), public Github repository \url{https://github.com/LuZhangstat/NNGP_STAN}.
 }
