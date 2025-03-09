@@ -1,42 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/404.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/index.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/NO2_Jan2012.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/bglm_me.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/blm_me.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/bspme-package.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/health_sim.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://changwoo-lee.github.io/bspme/reference/vecchia_cov.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://changwoo-lee.github.io/bspme/404.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/LICENSE.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/articles/index.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/authors.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/index.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/NO2_Jan2012.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/bglm_me.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/blm_me.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/bspme-package.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/health_sim.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/index.html</loc></url>
+<url><loc>https://changwoo-lee.github.io/bspme/reference/vecchia_cov.html</loc></url>
 </urlset>
+
