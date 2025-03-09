@@ -33,7 +33,7 @@ Naive, non-sparse choices of the precision matrix $Q = \Sigma^{-1}$ of the multi
 With a sparse precision matrix $Q$ obtained from the Vecchia approximation, the **bspme** package offers fast, scalable algorithms to conduct posterior inference for large health datasets, with the number of subjects $n$ possibly reaching tens of thousands.
  For more details, please see the following paper:
 
-> Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., & Park, E. S. (2024). A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. arXiv preprint arXiv:2401.00634. <https://arxiv.org/abs/2401.00634>
+> Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., & Park, E. S. (2025). A scalable two-stage Bayesian approach accounting for exposure measurement error in environmental epidemiology. Biostatistics, 26(1) kxae038. <https://doi.org/10.1093/biostatistics/kxae038>
 
 ## Installation
 

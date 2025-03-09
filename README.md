@@ -36,9 +36,10 @@ reaching tens of thousands. For more details, please see the following
 paper:
 
 > Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &
-> Park, E. S. (2024). A scalable two-stage Bayesian approach accounting
-> for exposure measurement error in environmental epidemiology. arXiv
-> preprint arXiv:2401.00634. <https://arxiv.org/abs/2401.00634>
+> Park, E. S. (2025). A scalable two-stage Bayesian approach accounting
+> for exposure measurement error in environmental epidemiology.
+> Biostatistics, 26(1) kxae038.
+> <https://doi.org/10.1093/biostatistics/kxae038>
 
 ## Installation
 
@@ -57,11 +58,11 @@ browseVignettes("bspme")
 
 ## Functionality
 
-| Function        | Description                                                                 |
-|-----------------|-----------------------------------------------------------------------------|
-| `blm_me()`      | Bayesian linear regression models with spatial exposure measurement error.  |
-| `bglm_me()`     | Bayesian generalized linear models with spatial exposure measurement error. |
-| `vecchia_cov()` | Run Vecchia approximation given a covariance matrix.                        |
+| Function | Description |
+|----|----|
+| `blm_me()` | Bayesian linear regression models with spatial exposure measurement error. |
+| `bglm_me()` | Bayesian generalized linear models with spatial exposure measurement error. |
+| `vecchia_cov()` | Run Vecchia approximation given a covariance matrix. |
 
 To see function description in R environment, run the following lines:
 
@@ -73,10 +74,10 @@ To see function description in R environment, run the following lines:
 
 ## datasets
 
-| Dataset call          | Description                                                                       |
-|-----------------------|-----------------------------------------------------------------------------------|
+| Dataset call | Description |
+|----|----|
 | `data("NO2_Jan2012")` | Daily average NO2 concentrations in and around Harris County, Texas, in Jan 2012. |
-| `data("health_sim")`  | Simulated health data associated with ln(NO2) concentration on Jan 10, 2012.      |
+| `data("health_sim")` | Simulated health data associated with ln(NO2) concentration on Jan 10, 2012. |
 
 ## Examples
 
