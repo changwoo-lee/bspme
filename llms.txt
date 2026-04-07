@@ -1,0 +1,109 @@
+# bspme
+
+Go to the package website:
+[\[link\]](https://changwoo-lee.github.io/bspme/)
+
+See a vignette with NO2 exposure and simulated health data:
+[\[link\]](https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.html)
+
+See bspme_1.0.1.pdf for the pdf file of the package manual.
+
+**bspme** is an R package that provides fast, scalable inference tools
+for **B**ayesian **sp**atial exposure **m**easurement **e**rror models,
+namely, the Bayesian linear and generalized linear models with the
+presence of spatial exposure measurement error of covariate(s). These
+models typically arise from a two-stage Bayesian analysis of
+environmental exposures and health outcomes. From a first-stage model,
+predictions of the covariate of interest (“exposure”) and their
+uncertainty information (typically contained in MCMC samples) are
+obtained and used to form a multivariate normal prior distribution
+$X \sim N(\mu,\Sigma)$ for exposure in a second-stage regression model.
+Naive, non-sparse choices of the precision matrix $Q = \Sigma^{- 1}$ of
+the multivariate normal (such as a sample precision matrix) lead to the
+MCMC posterior inference algorithm being infeasible to run for a large
+number of subjects $n$ because of the cubic computational cost
+associated with the $n$-dimensional MVN prior. With a sparse precision
+matrix $Q$ obtained from the Vecchia approximation, the **bspme**
+package offers fast, scalable algorithms to conduct posterior inference
+for large health datasets, with the number of subjects $n$ possibly
+reaching tens of thousands. For more details, please see the following
+paper:
+
+> Lee, C. J., Symanski, E., Rammah, A., Kang, D. H., Hopke, P. K., &
+> Park, E. S. (2025). A scalable two-stage Bayesian approach accounting
+> for exposure measurement error in environmental epidemiology.
+> Biostatistics, 26(1) kxae038.
+> <https://doi.org/10.1093/biostatistics/kxae038>
+
+## Installation
+
+You can install the R package bspme with the following code:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("changwoo-lee/bspme", build_vignettes = T)
+```
+
+To browse and see vignettes, run
+
+``` r
+browseVignettes("bspme")
+```
+
+## Functionality
+
+| Function                                                                         | Description                                                                 |
+|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| [`blm_me()`](https://changwoo-lee.github.io/bspme/reference/blm_me.md)           | Bayesian linear regression models with spatial exposure measurement error.  |
+| [`bglm_me()`](https://changwoo-lee.github.io/bspme/reference/bglm_me.md)         | Bayesian generalized linear models with spatial exposure measurement error. |
+| [`vecchia_cov()`](https://changwoo-lee.github.io/bspme/reference/vecchia_cov.md) | Run Vecchia approximation given a covariance matrix.                        |
+
+To see function description in R environment, run the following lines:
+
+``` r
+?blm_me
+?bglm_me
+?vecchia_cov
+```
+
+## datasets
+
+| Dataset call          | Description                                                                       |
+|-----------------------|-----------------------------------------------------------------------------------|
+| `data("NO2_Jan2012")` | Daily average NO2 concentrations in and around Harris County, Texas, in Jan 2012. |
+| `data("health_sim")`  | Simulated health data associated with ln(NO2) concentration on Jan 10, 2012.      |
+
+## Examples
+
+Please see the vignette “NO2-exposure-and-health-data-analysis”.
+
+## Acknowldegements
+
+This work was supported by the National Institute of Environmental
+Health Sciences (NIEHS) of the National Institutes of Health (NIH) under
+R01ES031990.
+
+# Package index
+
+## All functions
+
+- [`NO2_Jan2012`](https://changwoo-lee.github.io/bspme/reference/NO2_Jan2012.md)
+  : Daily average NO2 concentrations in and around the Harris County,
+  Texas, in Jan 2012
+- [`bglm_me()`](https://changwoo-lee.github.io/bspme/reference/bglm_me.md)
+  : Bayesian generalized linear models with spatial exposure measurement
+  error.
+- [`blm_me()`](https://changwoo-lee.github.io/bspme/reference/blm_me.md)
+  : Bayesian linear regression models with spatial exposure measurement
+  error.
+- [`health_sim`](https://changwoo-lee.github.io/bspme/reference/health_sim.md)
+  : Simulated health data
+- [`vecchia_cov()`](https://changwoo-lee.github.io/bspme/reference/vecchia_cov.md)
+  : Run Vecchia approximation given a covariance matrix
+
+# Articles
+
+### All vignettes
+
+- [NO2 exposure and health data
+  analysis](https://changwoo-lee.github.io/bspme/articles/no2-exposure-and-health-data-analysis.md):
