@@ -89,7 +89,7 @@ vecchia_cov = function(Sigma, coords, n.neighbors, ord = NULL, KLdiv = FALSE, lo
   # sparse matrix
   A = Matrix::Matrix(0, n, n);
   D = numeric(n) #D = Matrix(0, n, n);
-  D[1] = 1
+  D[1] = Sigma[1,1]
   # pseudocode 2 of Finley et al.
   #Nlist[[i]] be the set of indices j  <i such that A[i,j] not qe 0
   for(i in 1:(n-1)) {
